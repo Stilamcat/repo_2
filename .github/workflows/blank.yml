@@ -22,8 +22,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+      
+      - name: Run test
+        run: |
+          echo "running test"
 
-      - name: Run script
+      - name: Run merge
         run: |
           echo ${{ secrets.GAT_TOKEN }} | gh auth login --with-token
-          gh pr merge actions_temp -m -d -b "ci: merge pull request" -t "build: merge"
+          gh pr merge actions_temp -m -d -t "ci: merge pr"
